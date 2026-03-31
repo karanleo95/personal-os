@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 
 // ─── SUPABASE CONFIG — replace these two values ───────────────────────────────
-const SUPABASE_URL = "YOUR_SUPABASE_URL";
-const SUPABASE_KEY = "YOUR_SUPABASE_ANON_KEY";
+const SUPABASE_URL = "https://appqkvphnmfjmdgfcyug.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwcHFrdnBobm1mam1kZ2ZjeXVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5MzA0NjksImV4cCI6MjA5MDUwNjQ2OX0.eTXOLA3drArMGzRdT7rK1NkBvpQbI6_7At9cLi-whhc";
 
 // ─── SUPABASE CLIENT ──────────────────────────────────────────────────────────
 const sb = {
