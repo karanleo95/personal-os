@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-// ─── SUPABASE CONFIG — replace these two values ───────────────────────────────
+// ─── SUPABASE CONFIG ───────────────────────────────────────────────────────────
 const SUPABASE_URL = "https://appqkvphnmfjmdgfcyug.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwcHFrdnBobm1mam1kZ2ZjeXVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5MzA0NjksImV4cCI6MjA5MDUwNjQ2OX0.eTXOLA3drArMGzRdT7rK1NkBvpQbI6_7At9cLi-whhc";
 
@@ -190,6 +190,15 @@ async function fetchDailyQuote() {
   } catch { return fallback; }
 }
 
+// ─── GLOBAL STYLE INJECTION (fixes white border) ──────────────────────────────
+const globalStyle = document.createElement("style");
+globalStyle.innerHTML = `
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, #root { width: 100%; min-height: 100vh; background: #0d0d0c; }
+  body { overflow-x: hidden; }
+`;
+document.head.appendChild(globalStyle);
+
 export default function App() {
   const [tab,setTab]=useState("today");
   const [quarter,setQuarter]=useState(getCurrentQuarter());
@@ -245,7 +254,7 @@ export default function App() {
 
   const C={bg:"#0d0d0c",surface:"#141413",card:"#1a1a18",border:"#252523",text:"#f0ede6",muted:"#66665f",subtle:"#252523"};
   const s={
-    app:{minHeight:"100vh",background:C.bg,color:C.text,fontFamily:"system-ui,-apple-system,sans-serif",fontSize:14,paddingBottom:80},
+    app:{minHeight:"100vh",width:"100%",background:C.bg,color:C.text,fontFamily:"system-ui,-apple-system,sans-serif",fontSize:14,paddingBottom:80},
     card:{background:C.card,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden",marginBottom:12},
     ch:(accent)=>({padding:"12px 16px",borderBottom:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"space-between",background:accent?accent+"11":C.surface}),
     row:(last)=>({display:"flex",alignItems:"center",gap:12,padding:"11px 16px",borderBottom:last?"none":`1px solid ${C.border}`}),
